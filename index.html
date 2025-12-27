@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>旅のしおり｜同期男子5名｜小田原〜伊豆（2026/01/10-11）</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;     /* slate-900 */
+      --muted:#64748b;    /* slate-500 */
+      --line:#e2e8f0;     /* slate-200 */
+      --soft:#f8fafc;     /* slate-50 */
+      --soft2:#f1f5f9;    /* slate-100 */
+      --accent:#2563eb;   /* blue-600 */
+      --accent2:#0f766e;  /* teal-700 */
+      --warn:#b45309;     /* amber-700 */
+      --ok:#047857;       /* emerald-700 */
+      --danger:#b91c1c;   /* red-700 */
+      --shadow: 0 10px 26px rgba(2,6,23,.06);
+      --radius:18px;
+      --radius2:14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:28px 18px 60px;
+    }
+
+    /* --- Header (H1 + key constraints) --- */
+    .hero{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      box-shadow:var(--shadow);
+      padding:18px 18px 16px;
+    }
+    .heroTop{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .hero h1{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .hero .sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pillRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top:2px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+      background:#fff;
+      white-space:nowrap;
+    }
+    .pill b{font-weight:800}
+    .pill.blue{border-color:rgba(37,99,235,.25); background:rgba(37,99,235,.06); color:#0b3aa5}
+    .pill.green{border-color:rgba(4,120,87,.22); background:rgba(4,120,87,.06); color:var(--ok)}
+    .pill.amber{border-color:rgba(180,83,9,.22); background:rgba(180,83,9,.06); color:var(--warn)}
+
+    /* --- Layout --- */
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    /* --- Visual hierarchy helpers --- */
+    .sectionTitle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .badge{
+      font-size:11px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:3px 8px;
+      background:#fff;
+      color:var(--muted);
+    }
+    .kicker{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .rule{
+      height:1px;
+      background:var(--line);
+      margin:14px 0;
+    }
+
+    /* --- Quick nav (compact) --- */
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .nav a{
+      font-size:12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 10px;
+      background:#fff;
+    }
+    .nav a:hover{border-color:#cbd5e1; text-decoration:none}
+
+    /* --- Key blocks --- */
+    .keyBox{
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      background:linear-gradient(180deg, var(--soft) 0%, #fff 100%);
+      padding:12px 12px;
+    }
+    .keyGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 560px){
+      .keyGrid{grid-template-columns:1fr}
+    }
+    .kv{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      padding:10px 10px;
+    }
+    .kv .k{font-size:11px; color:var(--muted); margin:0}
+    .kv .v{margin:4px 0 0; font-size:13px; font-weight:700}
+    .kv .v .mono{font-family:var(--mono); font-weight:800}
+
+    /* --- Timeline --- */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .titem{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap:10px;
+      padding:10px 10px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+    }
+    .time{
+      font-family:var(--mono);
+      font-size:12px;
+      color:#0f172a;
+      padding-top:2px;
+      white-space:nowrap;
+    }
+    .tBody{display:flex; flex-direction:column; gap:4px;}
+    .tTitle{
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.1px;
+    }
+    .tDesc{
+      font-size:12px;
+      color:var(--muted);
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      margin-left:8px;
+      color:#334155;
+      transform: translateY(-1px);
+    }
+    .tag.blue{border-color:rgba(37,99,235,.25); background:rgba(37,99,235,.06); color:#0b3aa5}
+    .tag.orange{border-color:rgba(180,83,9,.22); background:rgba(180,83,9,.06); color:var(--warn)}
+    .tag.green{border-color:rgba(4,120,87,.22); background:rgba(4,120,87,.06); color:var(--ok)}
+
+    /* --- Tables --- */
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      background:#fff;
+    }
+    th,td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+      vertical-align:top;
+    }
+    th{
+      text-align:left;
+      font-weight:800;
+      background:var(--soft);
+      color:#0f172a;
+    }
+    tr:last-child td{border-bottom:none}
+
+    /* --- Callouts --- */
+    .callouts{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .callout{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 12px;
+      background:#fff;
+    }
+    .callout .h{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin:0 0 6px;
+    }
+    .callout .h .ttl{
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.1px;
+    }
+    .callout .h .lvl{
+      font-size:11px;
+      border-radius:999px;
+      padding:3px 8px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .lvl.A{border-color:rgba(185,28,28,.22); background:rgba(185,28,28,.06); color:var(--danger)}
+    .lvl.B{border-color:rgba(180,83,9,.22); background:rgba(180,83,9,.06); color:var(--warn)}
+    .lvl.C{border-color:rgba(4,120,87,.22); background:rgba(4,120,87,.06); color:var(--ok)}
+    .callout ul{
+      margin:0;
+      padding-left:18px;
+      color:#0f172a;
+      font-size:13px;
+    }
+    .callout li{margin:4px 0}
+    .callout .note{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* --- Details --- */
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:10px 12px;
+      background:#fff;
+    }
+    details summary{
+      cursor:pointer;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.1px;
+    }
+    details .content{
+      margin-top:8px;
+      font-size:13px;
+      color:#0f172a;
+    }
+
+    /* Print */
+    @media print{
+      a{text-decoration:none; color:#0f172a}
+      .hero,.card{box-shadow:none}
+      body{background:#fff}
+      .wrap{padding:0}
+      .grid{grid-template-columns:1fr}
+      .titem, details, table, .card, .hero {break-inside: avoid;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroTop">
+        <div>
+          <h1>旅のしおり：小田原城・江之浦測候所 → 伊豆（1泊2日）</h1>
+          <div class="sub">2026/01/10（土）– 2026/01/11（日）｜同期男子5名｜レンタカー（東京駅周辺）</div>
+        </div>
+        <div class="pillRow">
+          <span class="pill blue"><b>固定</b> 江之浦 13:30–16:30</span>
+          <span class="pill green"><b>食事</b> 夕20:00 / 朝7:00</span>
+          <span class="pill amber"><b>期限</b> 1/7 17:00</span>
+        </div>
+      </div>
+
+      <div class="nav" aria-label="ページ内リンク">
+        <a href="#members">参加者・集合解散</a>
+        <a href="#day1">Day1</a>
+        <a href="#day2">Day2</a>
+        <a href="#hotel">宿・食事</a>
+        <a href="#cost">費用</a>
+        <a href="#todo">直前ToDo</a>
+      </div>
+    </section>
+
+    <div class="grid">
+
+      <!-- LEFT: Core plan -->
+      <main class="card">
+        <h2 class="sectionTitle">参加者・集合解散 <span class="badge">敬称略</span></h2>
+        <div class="keyBox" id="members">
+          <div class="keyGrid">
+            <div class="kv">
+              <p class="k">東京駅 集合/解散（4名）</p>
+              <p class="v">麻妻・首藤・馬場・三治</p>
+            </div>
+            <div class="kv">
+              <p class="k">小田原 集合/解散（1名）</p>
+              <p class="v">小林</p>
+            </div>
+            <div class="kv">
+              <p class="k">車</p>
+              <p class="v">東京駅周辺でレンタカー（<span class="mono">ミニバン推奨</span>）</p>
+            </div>
+            <div class="kv">
+              <p class="k">最優先制約</p>
+              <p class="v">江之浦 <span class="mono">13:30–16:30</span>（遅刻厳禁）</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule"></div>
+
+        <section id="day1">
+          <h2 class="sectionTitle">Day1（1/10 土）<span class="badge">小田原 → 江之浦 → 伊豆</span></h2>
+          <p class="kicker">時間は運用上の目安。江之浦と夕食は固定。</p>
+
+          <div class="timeline">
+            <div class="titem">
+              <div class="time">08:15</div>
+              <div class="tBody">
+                <div class="tTitle">東京駅周辺レンタカー集合（4名）</div>
+                <div class="tDesc">ETC/保険/運転者登録、荷物配置、運転交代の当たりを付ける</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">08:30</div>
+              <div class="tBody">
+                <div class="tTitle">出発（首都高→東名/小田厚方面） <span class="tag blue">車移動</span></div>
+                <div class="tDesc">小田原到着を後ろ倒しにしない（江之浦の枠が硬い）</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">10:10</div>
+              <div class="tBody">
+                <div class="tTitle">小田原駅で小林合流</div>
+                <div class="tDesc">合流地点（東西・車寄せ/コインP）を固定して迷いを消す</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">10:30–12:00</div>
+              <div class="tBody">
+                <div class="tTitle">小田原城</div>
+                <div class="tDesc">混雑時は短縮可。江之浦の遅刻回避を優先</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">12:10–12:50</div>
+              <div class="tBody">
+                <div class="tTitle">昼食（小田原駅周辺）</div>
+                <div class="tDesc">回転の良い店で運用優先（行列店は避ける）</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">13:15</div>
+              <div class="tBody">
+                <div class="tTitle">江之浦測候所 到着（推奨） <span class="tag orange">遅刻厳禁</span></div>
+                <div class="tDesc">午後の部 13:30–16:30。駐車場利用は予約条件に注意</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">13:30–16:30</div>
+              <div class="tBody">
+                <div class="tTitle">江之浦測候所（午後の部）</div>
+                <div class="tDesc">退場→車合流の動線も意識（集合遅れが起きやすい）</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">18:30頃</div>
+              <div class="tBody">
+                <div class="tTitle">エクシブ伊豆 到着・チェックイン</div>
+                <div class="tDesc">国道135号は渋滞前提。詰まり始めたら早めに迂回判断</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">20:00</div>
+              <div class="tBody">
+                <div class="tTitle">夕食：日本料理「黒潮」スタンダードコース「凛」×5 <span class="tag green">固定</span></div>
+                <div class="tDesc">時間固定。ホテル到着は余裕を確保</div>
+              </div>
+            </div>
+          </div>
+
+          <details style="margin-top:12px;">
+            <summary>マップ（クリックで開く）</summary>
+            <div class="content">
+              <ul>
+                <li><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%A7%85">東京駅</a></li>
+                <li><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%9F%8E">小田原城</a></li>
+                <li><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%96%87%E5%8C%96%E8%B2%A1%E5%9B%A3%20%E6%B1%9F%E4%B9%8B%E6%B5%A6%E6%B8%AC%E5%80%99%E6%89%80">江之浦測候所</a></li>
+                <li><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A8%E3%82%AF%E3%82%B7%E3%83%96%E4%BC%8A%E8%B1%86">エクシブ伊豆</a></li>
+              </ul>
+              <p class="kicker">注：リンクは検索クエリ方式。正確な地点は当日ナビで確定。</p>
+            </div>
+          </details>
+        </section>
+
+        <div class="rule"></div>
+
+        <section id="day2">
+          <h2 class="sectionTitle">Day2（1/11 日）<span class="badge">伊豆 → 小田原 → 東京</span></h2>
+          <p class="kicker">伊豆は「1スポットだけ」に絞ると帰京が安定。</p>
+
+          <div class="timeline">
+            <div class="titem">
+              <div class="time">07:00</div>
+              <div class="tBody">
+                <div class="tTitle">朝食：日本料理「黒潮」和朝食膳×5 <span class="tag green">固定</span></div>
+                <div class="tDesc">朝が早いので前夜の就寝を前倒し</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">11:00</div>
+              <div class="tBody">
+                <div class="tTitle">チェックアウト</div>
+                <div class="tDesc">出発前に荷物/忘れ物チェック</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">11:30–13:00</div>
+              <div class="tBody">
+                <div class="tTitle">伊豆スポット（1つだけ・当日決定） <span class="tag blue">可変</span></div>
+                <div class="tDesc">候補：城ヶ崎海岸（吊橋）／伊豆高原（軽め）／修善寺（移動長め）</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">15:30頃</div>
+              <div class="tBody">
+                <div class="tTitle">小田原駅で小林解散</div>
+                <div class="tDesc">ドロップ地点は合流地点と同一にすると運用が安定</div>
+              </div>
+            </div>
+
+            <div class="titem">
+              <div class="time">17:30頃</div>
+              <div class="tBody">
+                <div class="tTitle">東京駅周辺 到着 → 給油 → 返却 → 解散</div>
+                <div class="tDesc">渋滞で±60分。返却時刻に余裕を持つ</div>
+              </div>
+            </div>
+          </div>
+
+          <details style="margin-top:12px;">
+            <summary>伊豆スポット候補（比較）</summary>
+            <div class="content">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:170px;">候補</th>
+                    <th>特徴</th>
+                    <th style="width:240px;">向くケース</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>城ヶ崎海岸（吊橋）</td>
+                    <td class="muted">景色が強い／滞在60–90分で成立／歩きはあるが満足度高</td>
+                    <td class="muted">帰京優先でも“体験”を残したい</td>
+                  </tr>
+                  <tr>
+                    <td>伊豆高原（軽め）</td>
+                    <td class="muted">疲労を残しにくい／行程が崩れにくい</td>
+                    <td class="muted">渋滞が読めない時の安全策</td>
+                  </tr>
+                  <tr>
+                    <td>修善寺</td>
+                    <td class="muted">雰囲気は良いが移動が伸びやすい</td>
+                    <td class="muted">渋滞が軽く、帰京が遅くても良い</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </section>
+      </main>
+
+      <!-- RIGHT: Reservation + costs + risk-focused ToDo -->
+      <aside class="card">
+        <h2 class="sectionTitle" id="hotel">宿・食事（予約情報）<span class="badge">確定</span></h2>
+
+        <div class="keyBox">
+          <div class="keyGrid">
+            <div class="kv">
+              <p class="k">施設</p>
+              <p class="v">エクシブ伊豆</p>
+            </div>
+            <div class="kv">
+              <p class="k">問合せ番号</p>
+              <p class="v mono">91906836</p>
+            </div>
+            <div class="kv">
+              <p class="k">宿泊</p>
+              <p class="v">和洋室 禁煙（スタンダード）1室<br><span class="muted">男性5名｜寝具5</span></p>
+            </div>
+            <div class="kv">
+              <p class="k">変更/キャンセル期限</p>
+              <p class="v mono">1/7（火）17:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule"></div>
+
+        <h2 class="sectionTitle">食事（固定）<span class="badge">時間固定</span></h2>
+        <table>
+          <tbody>
+            <tr>
+              <th style="width:110px;">夕食</th>
+              <td>01/10（土）20:00｜黒潮｜スタンダードコース「凛」×5</td>
+            </tr>
+            <tr>
+              <th>朝食</th>
+              <td>01/11（日）07:00｜黒潮｜和朝食膳（大人）×5</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="rule"></div>
+
+        <h2 class="sectionTitle" id="cost">費用（概算）<span class="badge">宿＋食事</span></h2>
+        <p class="kicker">提示情報どおり「食事はサービス料10%」として計算。最終は精算明細で確定。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th style="width:170px;">金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ルームチャージ</td><td class="mono" id="room">12,650</td></tr>
+            <tr><td>夕食（5名）</td><td class="mono" id="dinner">41,250</td></tr>
+            <tr><td>朝食（5名）</td><td class="mono" id="breakfast">14,850</td></tr>
+            <tr><td>サービス料（10%）</td><td class="mono" id="svc">5,610</td></tr>
+            <tr><td><b>合計</b></td><td class="mono"><b id="total">74,360</b></td></tr>
+            <tr><td><b>1人あたり（5人割）</b></td><td class="mono"><b id="pp">14,872</b></td></tr>
+          </tbody>
+        </table>
+
+        <div class="rule"></div>
+
+        <h2 class="sectionTitle" id="todo">直前ToDo（優先順位）<span class="badge">実務</span></h2>
+        <div class="callouts">
+          <div class="callout">
+            <div class="h">
+              <div class="ttl">江之浦：駐車場利用の予約条件を確認</div>
+              <div class="lvl A">最優先</div>
+            </div>
+            <ul>
+              <li>台数制限があるため「駐車場利用」条件を先に確定</li>
+              <li>当日トラブル（入れない/停められない）を排除</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <div class="h">
+              <div class="ttl">レンタカー：ミニバン指定／ETC／運転者登録（複数）</div>
+              <div class="lvl B">重要</div>
+            </div>
+            <ul>
+              <li>免責・NOC含む保険条件も同時に確定</li>
+              <li>返却時刻に間に合う予約枠にする</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <div class="h">
+              <div class="ttl">小林の合流/解散地点（小田原駅）を固定</div>
+              <div class="lvl B">重要</div>
+            </div>
+            <ul>
+              <li>東西出口・車寄せ/コインPを1つに固定</li>
+              <li>当日の迷い（電話→迂回→遅延）を削る</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <div class="h">
+              <div class="ttl">運転ローテ（交代ポイント）を決める</div>
+              <div class="lvl C">推奨</div>
+            </div>
+            <ul>
+              <li>疲労の偏りを避ける（後半の一般道で効く）</li>
+              <li>休憩ポイントを決めて運用を安定化</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <div class="h">
+              <div class="ttl">期限：1/7 17:00（変更/減室/キャンセル）を周知</div>
+              <div class="lvl A">最優先</div>
+            </div>
+            <ul>
+              <li>期限後のキャンセル料（50%/100%）を回避</li>
+              <li>問合せ番号：<span class="mono">91906836</span></li>
+            </ul>
+            <div class="note">室数減も期限対象。必要なら早めに調整。</div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script>
+    // Cost calc (based on provided numbers)
+    function comma(n){
+      return new Intl.NumberFormat('ja-JP').format(n);
+    }
+    (function calcCosts(){
+      const room = 12650;
+      const dinner = 8250 * 5;
+      const breakfast = 2970 * 5;
+      const food = dinner + breakfast;
+      const svc = Math.round(food * 0.10);
+      const total = room + food + svc;
+      const pp = Math.round(total / 5);
+
+      document.getElementById('room').textContent = comma(room);
+      document.getElementById('dinner').textContent = comma(dinner);
+      document.getElementById('breakfast').textContent = comma(breakfast);
+      document.getElementById('svc').textContent = comma(svc);
+      document.getElementById('total').textContent = comma(total);
+      document.getElementById('pp').textContent = comma(pp);
+    })();
+  </script>
+</body>
+</html>
